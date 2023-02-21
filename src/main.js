@@ -10,4 +10,6 @@ const app = createApp(App)
 
 app.use(router, VueAxios, axios)
 
+app.config.globalProperties.$token = ""
+
 app.mount('#app')

@@ -3,6 +3,8 @@
     <RouterLink class="router" to="/">Home</RouterLink>
     <RouterLink class="router" to="/posts">Posts</RouterLink>
     <RouterLink class="router" to="/new/post">Poster</RouterLink>
+    <RouterLink class="router" to="/register">Register</RouterLink>
+    <RouterLink class="router" to="/connection">Connect</RouterLink>
   </div>
 
 </template>
@@ -17,7 +19,7 @@ export default {
 <style scoped>
 .routerDiv{
   display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   text-align: center;
 }
 .router{

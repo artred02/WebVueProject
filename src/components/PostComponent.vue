@@ -5,6 +5,7 @@
       <div class="childDiv">Titre : {{post.title}}</div>
       <div class="childDiv">Contenu : {{post.content}}</div>
       <div>Date de création : {{formatDate(post.creationDate)}}</div>
+      <div></div>
     </div>
   </div>
 </template>
@@ -21,7 +22,7 @@ export default {
     }
   },
   mounted: function(){
-    this.callApi() //method1 will execute at pageload
+    this.callApi() //method will be executed at page loading
   },
   name: "PostComponent",
   methods: {

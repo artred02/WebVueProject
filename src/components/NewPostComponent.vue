@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import {inject} from "vue";
 
 export default {
   name: "NewPostComponent",
@@ -36,14 +37,22 @@ export default {
   },
   methods: {
     callApi() {
-      if (this.title !== "" && this.content !== ""){
+      if (this.title !== "" && this.content !== "")
+      {
         this.posts = [];
         let now = new Date();
         axios.post("http://77.141.66.29:8888/api/posts", {
           title: this.title,
           content: this.content,
           creationDate: now
-        }).then(
+        },
+  {
+          headers: {
+            'Content-Type' : 'application/json',
+            'Authorization' : 'Bearer ' + inject('token')
+          }
+        }
+            ).then(
             (response)=>{
               if (response.status !== 201){
                 this.error="Erreur de l'api..";
@@ -74,36 +83,4 @@ export default {
 
 <style scoped>
 
-div.myForm {
-  width: 600px;
-  padding: 0 30px;
-  margin: 10% auto;
-}
-
-div.myForm legend {
-  padding: 0 3px;
-  font-weight: bold;
-}
-
-div.myForm label {
-  width: 110px;
-  display: inline-block;
-  vertical-align: top;
-  margin: 6px;
-}
-
-div.myForm em {
-  font-weight: bold;
-  font-style: normal;
-  color: #f00;
-}
-
-div.myForm input, textarea {
-  width: 260px;
-}
-
-div.center {
-  margin: 0 auto;
-  display: table;
-}
 </style>

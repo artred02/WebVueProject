@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainComponent from "@/components/MainComponent.vue";
 import PostComponent from "@/components/PostComponent.vue";
 import NewPostComponent from "@/components/NewPostComponent.vue";
+import RegisterComponent from "@/components/RegisterComponent.vue";
+import UniquePostComponent from "@/components/UniquePostComponent.vue";
+import ConnectionComponent from "@/components/ConnectionComponent.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +24,21 @@ const router = createRouter({
       name: 'newPost',
       component: NewPostComponent
     },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: UniquePostComponent
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterComponent
+    },
+    {
+      path: '/connection',
+      name: 'connection',
+      component: ConnectionComponent
+    }
   ]
 })
 

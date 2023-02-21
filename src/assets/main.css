@@ -1,0 +1,32 @@
+div.myForm {
+    width: 600px;
+    padding: 0 30px;
+    margin: 10% auto;
+}
+
+div.myForm legend {
+    padding: 0 3px;
+    font-weight: bold;
+}
+
+div.myForm label {
+    width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+}
+
+div.myForm em {
+    font-weight: bold;
+    font-style: normal;
+    color: #f00;
+}
+
+div.myForm input, textarea {
+    width: 260px;
+}
+
+div.center {
+    margin: 0 auto;
+    display: table;
+}
