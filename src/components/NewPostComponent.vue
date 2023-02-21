@@ -5,13 +5,14 @@
       <br>
       <form @submit.prevent="callApi">
         <label for="title">Titre<em>*</em></label>
-        <input type="text" id="title" v-model="title">
+        <input v-bind:style="{ borderColor: borderColorTitle}" type="text" id="title" v-model="title">
         <br>
         <label for="content">Contenu<em>*</em></label>
-        <input type="text" id="content" v-model="content">
+        <textarea v-bind:style="{ borderColor: borderColorContent}" id="content" v-model="content"/>
         <br><br>
         <div class="center">
           <input id="button" type="submit" value="Valider">
+          <div id="error" v-if="error">{{error}}</div>
         </div>
       </form>
     </fieldset>
@@ -27,32 +28,45 @@ export default {
   data() {
     return {
       title: "",
-      content: ""
+      content: "",
+      error: "",
+      borderColorTitle: "",
+      borderColorContent: "",
     }
   },
   methods: {
     callApi() {
-      this.posts = [];
-      let now = new Date();
-      axios.post("https://localhost:8000/api/posts", {
-        title: "Clément",
-        content: "Je suis le contenu",
-        creationDate: now
-      }).then(
-          (response) => {
-            let test;
-            test = JSON.parse(response.request.response);
-            console.log(test);
-            // test = test["hydra:member"];
-            // for (let i = 0; i<test["length"]; i++) {
-            //   let date = test[i]["creationDate"];
-            //   date = new Date(date).toDateString();
-            //   test[i]["creationDate"] = date;
-            //   this.posts.push(test[i]);
-            // }
-          }
-      );
+      if (this.title !== "" && this.content !== ""){
+        this.posts = [];
+        let now = new Date();
+        axios.post("http://77.141.66.29:8888/api/posts", {
+          title: this.title,
+          content: this.content,
+          creationDate: now
+        }).then(
+            (response)=>{
+              if (response.status !== 201){
+                this.error="Erreur de l'api..";
+              }
+            }
+        )
+        this.title = "";
+        this.content = "";
+      } else {
+        this.error="Les champs ne sont pas valides";
+        if (this.title === ""){
+          this.borderColorTitle="red";
+        } else {
+          this.borderColorTitle="";
+        }
+        if (this.content === ""){
+          this.borderColorContent="red";
+        } else {
+          this.borderColorContent="";
+        }
+      }
     }
+
   }
 }
 
@@ -67,7 +81,7 @@ div.myForm {
 }
 
 div.myForm legend {
-  padding: 0px 3px;
+  padding: 0 3px;
   font-weight: bold;
 }
 

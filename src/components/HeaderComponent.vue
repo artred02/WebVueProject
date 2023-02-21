@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="routerDiv">
     <RouterLink class="router" to="/">Home</RouterLink>
     <RouterLink class="router" to="/posts">Posts</RouterLink>
     <RouterLink class="router" to="/new/post">Poster</RouterLink>
@@ -15,8 +15,12 @@ export default {
 </script>
 
 <style scoped>
+.routerDiv{
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  text-align: center;
+}
 .router{
-  margin: 15%;
   text-decoration: none;
   color: black;
   font-size: x-large;
