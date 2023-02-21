@@ -36,7 +36,7 @@ export default {
   methods: {
     register() {
       if (this.username !== "" && this.password !== "") {
-        axios.post("https://127.0.0.1:8000/auth", {
+        axios.post("http://77.141.66.29:8888/auth", {
               username: this.username,
               password: this.password,
             },
