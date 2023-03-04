@@ -5,7 +5,7 @@
       <div class="childDiv">Titre : {{post.title}}</div>
       <div class="childDiv">Contenu : {{post.content}}</div>
       <div>Date de création : {{formatDate(post.creationDate)}}</div>
-      <div></div>
+      <router-link :to="{ name: 'postId', params: { id: post.id }}">Accéder au post</router-link>
     </div>
   </div>
 </template>
@@ -13,7 +13,6 @@
 <script>
 import axios from "axios";
 import dayjs from 'dayjs';
-
 export default {
   data() {
     return {
@@ -22,21 +21,30 @@ export default {
     }
   },
   mounted: function(){
-    this.callApi() //method will be executed at page loading
+    this.callApi();
   },
   name: "PostComponent",
   methods: {
     callApi() {
       this.posts = [];
-      axios.get("http://77.141.66.29:8888/api/posts").then(
+      axios.get("http://77.141.66.29:8888/api/posts",
+{
+        headers: {
+          'Accept' : 'application/json',
+        }
+      }
+      ).then(
           (response) => {
-            response.data["hydra:member"].forEach(post => this.posts.push(post));
+            response.data.forEach(post => this.posts.push(post));
           }
       );
     },
     formatDate(dateString) {
       const date = dayjs(dateString);
       return date.format('dddd D MMMM YYYY');
+    },
+    redirect(){
+
     }
   },
 }

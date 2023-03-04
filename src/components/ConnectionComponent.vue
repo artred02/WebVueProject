@@ -21,9 +21,15 @@
 
 <script>
 import axios from "axios";
+import {useCookies} from "vue3-cookies";
+import VueJwtDecode from "vue-jwt-decode";
 
 export default {
   name: "ConnectionComponent",
+  setup() {
+    const { cookies } = useCookies();
+    return { cookies };
+  },
   data() {
     return {
       username: "",
@@ -36,8 +42,8 @@ export default {
   methods: {
     register() {
       if (this.username !== "" && this.password !== "") {
-        axios.post("http://77.141.66.29:8888/auth", {
-              username: this.username,
+        axios.post("http://77.141.66.29:8888/api/login_check", {
+              email: this.username,
               password: this.password,
             },
       {
@@ -47,10 +53,14 @@ export default {
             },
         ).then(
             (response) => {
+              console.log(response);
               if (response.status !== 200) {
                 this.error = "Erreur de l'api..";
               }
-              console.log(response)
+              let token = response.data["token"];
+              this.cookies.set("myToken", token);
+              let tokenDecode = VueJwtDecode.decode(this.$cookies.get("myToken"));
+              this.$cookies.set("myId", tokenDecode['id'])
             }
         )
         this.username = "";

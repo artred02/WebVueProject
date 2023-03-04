@@ -22,7 +22,6 @@
 
 <script>
 import axios from "axios";
-import {inject} from "vue";
 
 export default {
   name: "NewPostComponent",
@@ -44,20 +43,21 @@ export default {
         axios.post("http://77.141.66.29:8888/api/posts", {
           title: this.title,
           content: this.content,
-          creationDate: now
+          creationDate: now,
+          user: '/api/users/'+this.$cookies.get('myId')
         },
   {
           headers: {
-            'Content-Type' : 'application/json',
-            'Authorization' : 'Bearer ' + inject('token')
+            'Accept' : 'application/json',
+            'Authorization' : 'Bearer ' + this.$cookies.get("myToken")
           }
         }
-            ).then(
-            (response)=>{
-              if (response.status !== 201){
-                this.error="Erreur de l'api..";
-              }
-            }
+        ).then(
+        (response)=>{
+          if (response.status !== 201){
+            this.error="Erreur de l'api..";
+          }
+        }
         )
         this.title = "";
         this.content = "";

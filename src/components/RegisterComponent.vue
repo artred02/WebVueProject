@@ -5,7 +5,10 @@
       <br>
       <form @submit.prevent="register">
         <label for="email">Email<em>*</em></label>
-        <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="email" v-model="username">
+        <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="email" v-model="email">
+        <br>
+        <label for="username">Nom d'utilisateur<em>*</em></label>
+        <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="username" v-model="name">
         <br>
         <label for="password">Mot de passe<em>*</em></label>
         <input v-bind:style="{ borderColor: borderColorPasswd}" type="text" id="password" v-model="password">
@@ -21,12 +24,13 @@
 
 <script>
 import axios from "axios";
-
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "RegisterComponent",
   data() {
     return {
-      username: "",
+      email: "",
+      name: "",
       password: "",
       error: "",
       borderColorEmail: "",
@@ -35,10 +39,11 @@ export default {
   },
   methods: {
     register() {
-      if (this.username !== "" && this.password !== "") {
-        axios.post("http://77.141.66.29:8888/api/users", {
-              email: this.username,
+      if (this.email !== "" && this.password !== "" && this.name !== "") {
+        axios.post("https://127.0.0.1:8000/api/users", {
+              email: this.email,
               password: this.password,
+              name: this.name
             },
             {
               headers: {
@@ -47,11 +52,12 @@ export default {
             },
         ).then(
             (response) => {
+              console.log(response.data['id']);
               if (response.status !== 201) {
                 this.error = "Erreur de l'api..";
               } else {
-                axios.post("http://77.141.66.29:8888/auth", {
-                  username: this.username,
+                axios.post("https://127.0.0.1:8000/api/login_check", {
+                  email: this.email,
                   password: this.password,
                 },
           {
@@ -61,11 +67,13 @@ export default {
                 }
                 ).then(
                     (response) => {
-                      this.token = response.data["token"];
-                      console.log(this.token)
+                      let token = response.data["token"];
+                      this.$cookies.set("myToken", token);
+                      let tokenDecode = VueJwtDecode.decode(token);
+                      this.$cookies.set('myId', tokenDecode['id'])
                     }
                 )
-                this.username = "";
+                this.email = "";
                 this.password = "";
               }
             }
@@ -75,7 +83,7 @@ export default {
         })
       } else {
         this.error = "Les champs ne sont pas valides";
-        if (this.username === "") {
+        if (this.email === "") {
           this.borderColorEmail = "red";
         } else {
           this.borderColorEmail = "";

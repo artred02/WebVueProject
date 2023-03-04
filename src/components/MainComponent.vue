@@ -1,10 +1,15 @@
 <template>
-Main
+Main : {{id}}
 </template>
 
 <script>
 export default {
-  name: "MainComponent"
+  name: "MainComponent",
+  data () {
+    return {
+      id: this.$cookies.get('myId')
+    }
+  }
 }
 </script>
 
