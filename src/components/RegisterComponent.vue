@@ -40,7 +40,7 @@ export default {
   methods: {
     register() {
       if (this.email !== "" && this.password !== "" && this.name !== "") {
-        axios.post("https://127.0.0.1:8000/api/users", {
+        axios.post("http://77.141.66.29:8888/api/users", {
               email: this.email,
               password: this.password,
               name: this.name
