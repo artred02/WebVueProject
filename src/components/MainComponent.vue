@@ -1,7 +1,7 @@
 <template>
   <br>
   <div>
-    Bienvenu sur le forum basé sur l'api développée par Clément Lardemelle : <a href="https://github.com/artred02/ApiProject" target="_blank" rel="noreferrer noopener">ApiProject</a>
+    Bienvenu sur le forum basé sur l'api développée par Clément Lardemelle : <a href="https://github.com/artred02/ApiProjectV2" target="_blank" rel="noreferrer noopener">ApiProject</a>
   </div>
   <br>
   <div>
