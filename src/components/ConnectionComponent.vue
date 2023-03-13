@@ -42,7 +42,7 @@ export default {
   methods: {
     register() {
       if (this.username !== "" && this.password !== "") {
-        axios.post("http://77.141.66.29:8888/api/login_check", {
+        axios.post(this.$domain+"login_check", {
               email: this.username,
               password: this.password,
             },
@@ -61,6 +61,7 @@ export default {
               this.cookies.set("myToken", token);
               let tokenDecode = VueJwtDecode.decode(this.$cookies.get("myToken"));
               this.$cookies.set("myId", tokenDecode['id'])
+              this.$router.push('/');
             }
         )
         this.username = "";

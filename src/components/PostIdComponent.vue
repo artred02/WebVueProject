@@ -1,12 +1,19 @@
 <template>
-  Title : {{post.title}}<br>
-  Content : {{post.content}}<br>
-  Id: {{ post.id }}
+  <div>Date de création : {{formatDate(post.creationDate)}}</div>
+  <div class="childDiv">Titre : {{post.title}}</div>
+  <div class="childDiv">Contenu : {{post.content}}</div>
+  <div>
+    <label for="comment">Commentaire : </label><br>
+    <textarea name="" id="comment"></textarea>
+  </div>
+  <div v-for="comment in post.comments">{{comment}}</div>
+  
 </template>
 
 <script>
 import { useRoute } from 'vue-router';
 import axios from "axios";
+import dayjs from "dayjs";
 export default {
   setup() {
     const route = useRoute();
@@ -24,7 +31,7 @@ export default {
   methods: {
     callApi() {
       this.post = [];
-      axios.get("http://77.141.66.29:8888/api/posts/"+this.route.params.id,
+      axios.get(this.$domain+"posts/"+this.route.params.id,
           {
             headers: {
               'Accept' : 'application/json',
@@ -35,6 +42,10 @@ export default {
             this.post = response.data;
           }
       );
+    },
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      return date.format('dddd D MMMM YYYY');
     },
   },
 

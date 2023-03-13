@@ -5,7 +5,7 @@
       <div class="childDiv">Titre : {{post.title}}</div>
       <div class="childDiv">Contenu : {{post.content}}</div>
       <div>Date de création : {{formatDate(post.creationDate)}}</div>
-      <router-link :to="{ name: 'postId', params: { id: post.id }}">Accéder au post</router-link>
+      <router-link :to="{ name: 'postId', params: { id: post.id }, props: {id: post.id}}">Accéder au post</router-link>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   methods: {
     callApi() {
       this.posts = [];
-      axios.get("http://77.141.66.29:8888/api/posts",
+      axios.get(this.$domain+"posts",
 {
         headers: {
           'Accept' : 'application/json',
@@ -43,9 +43,6 @@ export default {
       const date = dayjs(dateString);
       return date.format('dddd D MMMM YYYY');
     },
-    redirect(){
-
-    }
   },
 }
 </script>

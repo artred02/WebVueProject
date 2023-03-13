@@ -40,7 +40,7 @@ export default {
   methods: {
     register() {
       if (this.email !== "" && this.password !== "" && this.name !== "") {
-        axios.post("http://77.141.66.29:8888/api/users", {
+        axios.post(this.$domain+"users", {
               email: this.email,
               password: this.password,
               name: this.name
@@ -56,7 +56,7 @@ export default {
               if (response.status !== 201) {
                 this.error = "Erreur de l'api..";
               } else {
-                axios.post("https://127.0.0.1:8000/api/login_check", {
+                axios.post(this.$domain+"login_check", {
                   email: this.email,
                   password: this.password,
                 },
@@ -75,6 +75,7 @@ export default {
                 )
                 this.email = "";
                 this.password = "";
+                this.$router.push('/')
               }
             }
         ).catch(error=>{

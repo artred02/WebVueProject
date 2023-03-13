@@ -40,7 +40,7 @@ export default {
       {
         this.posts = [];
         let now = new Date();
-        axios.post("http://77.141.66.29:8888/api/posts", {
+        axios.post(this.$domain+"posts", {
           title: this.title,
           content: this.content,
           creationDate: now,

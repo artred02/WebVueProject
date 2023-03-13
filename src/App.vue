@@ -14,7 +14,7 @@ export default {
 
 <template>
   <header>
-    <HeaderComponent />
+    <HeaderComponent :key="$route.fullPath"/>
   </header>
   <body>
     <RouterView />
