@@ -1,7 +1,6 @@
 <template>
   <div v-if="user !== null">
     <div>
-      test
       {{user}}<br>
       {{user.email}}<br>
       {{user.name}}<br>

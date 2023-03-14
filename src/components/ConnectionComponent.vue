@@ -8,7 +8,7 @@
         <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="email" v-model="username">
         <br>
         <label for="password">Mot de passe<em>*</em></label>
-        <input v-bind:style="{ borderColor: borderColorPasswd}" type="text" id="password" v-model="password">
+        <input v-bind:style="{ borderColor: borderColorPasswd}" type="password" id="password" v-model="password">
         <br><br>
         <div class="center">
           <input id="button" type="submit" value="Valider">
@@ -60,7 +60,9 @@ export default {
               let token = response.data["token"];
               this.cookies.set("myToken", token);
               let tokenDecode = VueJwtDecode.decode(this.$cookies.get("myToken"));
+              console.log(tokenDecode['id']);
               this.$cookies.set("myId", tokenDecode['id'])
+
               this.$router.push('/');
             }
         )

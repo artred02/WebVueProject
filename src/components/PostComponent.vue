@@ -5,7 +5,7 @@
       <div class="childDiv">Titre : {{post.title}}</div>
       <div class="childDiv">Contenu : {{post.content}}</div>
       <div>Date de création : {{formatDate(post.creationDate)}}</div>
-      <router-link :to="{ name: 'postId', params: { id: post.id }, props: {id: post.id}}">Accéder au post</router-link>
+      <router-link :to="{ name: 'postId', params:{id: post.id}}">Accéder au post</router-link>
     </div>
   </div>
 </template>
@@ -50,13 +50,16 @@ export default {
 <style scoped>
   .mainDiv{
     display: grid;
-    margin: 2%;
     grid-template-columns: 50% 50%;
   }
   .parent{
     display: block;
-    margin: 5%;
+    margin: 5% 0;
     height: 50px;
     width: 100%;
+    max-width: 500px;
+    padding: 2%;
+  }a{
+    margin-top: 15px;
   }
 </style>

@@ -34,16 +34,20 @@ export default {
       borderColorContent: "",
     }
   },
+  mounted: function () {
+    if (!this.$cookies.isKey("myToken")){
+      this.$router.push('/');
+    }
+  },
   methods: {
     callApi() {
       if (this.title !== "" && this.content !== "")
       {
         this.posts = [];
-        let now = new Date();
         axios.post(this.$domain+"posts", {
           title: this.title,
           content: this.content,
-          creationDate: now,
+          creationDate: new Date(),
           user: '/api/users/'+this.$cookies.get('myId')
         },
   {

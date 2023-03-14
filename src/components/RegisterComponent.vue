@@ -11,7 +11,7 @@
         <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="username" v-model="name">
         <br>
         <label for="password">Mot de passe<em>*</em></label>
-        <input v-bind:style="{ borderColor: borderColorPasswd}" type="text" id="password" v-model="password">
+        <input v-bind:style="{ borderColor: borderColorPasswd}" type="password" id="password" v-model="password">
         <br><br>
         <div class="center">
           <input id="button" type="submit" value="Valider">
@@ -52,7 +52,6 @@ export default {
             },
         ).then(
             (response) => {
-              console.log(response.data['id']);
               if (response.status !== 201) {
                 this.error = "Erreur de l'api..";
               } else {

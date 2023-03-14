@@ -13,6 +13,6 @@ app.use(router)
 app.use(VueAxios, axios)
 app.use(VueCookies)
 
-app.config.globalProperties.$domain = "http://77.141.66.29:8888/api/"
+app.config.globalProperties.$domain = "http://www.artred02.fr:8888/api/"
 
 app.mount('#app')
