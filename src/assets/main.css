@@ -1,37 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 :root {
-    --color-background: #CEDDDE;
-    --color-primary: #0FC2C0;
-    --color-secondary: #008F8C;
-    --color-tertiary: #023535;
+    --color-background: #D9F9F4;
+    --color-primary: #9CD9DE;
+    --color-secondary: #86C1D4;
+    --color-tertiary: #5A92AF;
+    --color-text: #082c3d;
+    --fa-primary-color: #2f657c;
+}
+
+[data-theme="dark"] {
+    --color-background: #abbed0;
+    --color-primary: #112149;
+    --color-secondary: #293e67;
+    --color-tertiary: #051931;
+    --color-text: #317394;
+    --fa-primary-color: #61b3cc;
+}
+
+svg {
+    color: var(--fa-primary-color);
 }
 
 body{
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
     background-color: var(--color-background);
+    transition: all 0.5s ease-in-out;
 }
 
 a{
     text-decoration: none;
-    color: var(--color-secondary);
+    color: var(--color-text);
 }
 
 header{
-    padding: 3vh 0 3vh 0;
+    padding: 2vh 0 2vh 0;
     background-color: var(--color-primary);
+    transition: all 0.5s ease-in-out;
 }
 
 div.myForm {
     width: 600px;
-    padding: 0 30px;
-    margin: 10% auto;
+    margin: 20% auto;
+    position:absolute;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--color-tertiary);
+    border-radius:10px;
+    padding:70px 100px;
+    transition: all 0.5s ease-in-out;
 }
 
 div.myForm legend {
     padding: 0 3px;
     font-weight: bold;
+    color: var(--color-text);
+}
+
+div.myForm fieldset {
+    border-radius:10px;
 }
 
 div.myForm label {
@@ -39,16 +67,46 @@ div.myForm label {
     display: inline-block;
     vertical-align: top;
     margin: 6px;
+    font-size:16px;
+    color: var(--color-text);
+    transition: all 0.5s ease-in-out;
+    padding: 8px 0 5px 0;
 }
 
 div.myForm em {
     font-weight: bold;
     font-style: normal;
-    color: #f00;
+    color: var(--color-secondary);
 }
 
 div.myForm input, textarea {
     width: 260px;
+    margin: 6px;
+    border:0;
+    border-bottom:1px solid var(--color-secondary);
+    background:transparent;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color: var(--color-text);
+}
+
+div.myForm input, textarea:focus{
+    border:none;
+    outline:none;
+    border-bottom:1px solid var(--color-secondary);
+}
+
+#button{
+    color: var(--color-text);
+    background-color: var(--color-secondary);
+    outline: none;
+    border: 0;
+    padding:10px 20px;
+    text-transform:uppercase;
+    margin-top:50px;
+    border-radius:2px;
+    cursor:pointer;
+    position:relative;
 }
 
 div.center {
@@ -98,8 +156,6 @@ div.center {
     cursor: pointer;
 }
 
-.postIdVue{
-    padding-left: 5vw;
-}.divComments{
-    padding-left: 5vw;
- }
+.eyeIcon {
+    color: var(--color-secondary);
+}

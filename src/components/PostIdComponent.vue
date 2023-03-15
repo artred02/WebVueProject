@@ -1,36 +1,40 @@
 <template>
-  <div class="postIdVue">
-    <br><br>
-    <div class="childDiv" style="font-size: x-large">{{post.title}}</div>
-    <br>
-    <div><span v-if="this.post.user !== undefined && this.post.user !== 0">{{post.user.name}}</span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
-    <br>
-    <div class="childDiv" style="margin-left: 2%">{{post.content}}</div>
-    <br>
-    <button @click="showModal" id="myBtn">Commenter</button>
+  <br><br>
 
-    <div id="myModal" class="modal">
+  <div class="mainDiv">
+    <div class="postIdVue">
+      <div class="childDiv" style="font-size: x-large">{{post.title}}</div>
+      <br>
+      <div><span v-if="this.post.user !== undefined && this.post.user !== 0">{{post.user.name}}</span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
+      <br>
+      <div class="childDiv" style="margin-left: 2%">{{post.content}}</div>
+      <br>
+      <button @click="showModal" id="myBtn" v-if="this.$cookies.isKey('myToken')">Commenter</button>
 
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form @submit="commentApi($event)">
-          <label for="comment">Commentaire : </label><br>
-          <textarea name="" id="comment" v-model="content"></textarea><br>
-          <input type="submit" value="Commenter">
-        </form>
-      </div>
+      <div id="myModal" class="modal">
 
-    </div>
-    <br>
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form @submit="commentApi($event)">
+            <label for="comment">Commentaire : </label><br>
+            <textarea name="" id="comment" v-model="content"></textarea><br>
+            <input type="submit" value="Commenter">
+          </form>
+        </div>
 
-    <br>
-    <div v-for="comment in this.comments" v-if="this.comments !== undefined && this.comments.length !== 0" class="divComments">
-      <div>
-        <span><b>{{comment.user.name}}</b></span>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
-        <span style="margin-left: 2%">{{comment.content}}</span>
       </div>
       <br>
+
+      <br>
+      <div v-for="comment in this.comments" v-if="this.comments !== undefined && this.comments.length !== 0" class="divComments">
+        <div>
+          <span><b>{{comment.user.name}}</b></span>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
+          <span style="margin-left: 2%">{{comment.content}}</span>
+        </div>
+        <br>
+      </div>
+      <div v-if="error !== undefined">{{error}}</div>
     </div>
   </div>
 </template>
@@ -51,6 +55,7 @@ export default {
       comments: [],
       isDisplayForm: 'none',
       content: "",
+      error: "",
     }
   },
   mounted: function(){
@@ -78,7 +83,9 @@ export default {
       ).then(
           (response) => {
             this.post = response.data;
-            this.getComments();
+            if (this.$cookies.isKey('myToken')) {
+              this.getComments();
+            }
           }
       );
     },
@@ -114,12 +121,21 @@ export default {
             if (response.status !== 201){
               this.error="Erreur de l'api..";
             }
-            console.log(response)
             this.content = "";
             document.getElementById("myModal").style.display = "none";
             this.getComments();
           }
-      )
+      ).catch(
+          (error) => {
+            if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
+              this.$cookies.remove("myToken");
+              this.$cookies.remove("myId");
+              this.$router.push('/');
+            } else {
+              this.error = error;
+            }
+          }
+      );
     },
     showModal() {
       const modal = document.getElementById("myModal");
@@ -141,4 +157,16 @@ export default {
 
 <style scoped>
 
+.mainDiv{
+  display: grid;
+  grid-template-columns: 25%;
+}
+
+.postIdVue{
+  display: block;
+  width: auto;
+}
+.divComments{
+   padding-left: 5vw;
+ }
 </style>

@@ -34,7 +34,7 @@ export default {
       borderColorContent: "",
     }
   },
-  mounted: function () {
+  mounted () {
     if (!this.$cookies.isKey("myToken")){
       this.$router.push('/');
     }
@@ -56,13 +56,17 @@ export default {
             'Authorization' : 'Bearer ' + this.$cookies.get("myToken")
           }
         }
-        ).then(
-        (response)=>{
-          if (response.status !== 201){
-            this.error="Erreur de l'api..";
-          }
-        }
-        )
+        ).catch(
+            (error) => {
+              if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
+                this.$cookies.remove("myToken");
+                this.$cookies.remove("myId");
+                this.$router.push('/');
+              } else {
+                this.error = error;
+              }
+            }
+        );
         this.title = "";
         this.content = "";
       } else {

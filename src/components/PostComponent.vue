@@ -20,7 +20,7 @@ export default {
       date: '',
     }
   },
-  mounted: function(){
+  mounted (){
     this.callApi();
   },
   name: "PostComponent",
@@ -50,7 +50,7 @@ export default {
 <style scoped>
   .mainDiv{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(2, 50%);
   }
   .parent{
     display: block;

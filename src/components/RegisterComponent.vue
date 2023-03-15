@@ -11,7 +11,9 @@
         <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="username" v-model="name">
         <br>
         <label for="password">Mot de passe<em>*</em></label>
-        <input v-bind:style="{ borderColor: borderColorPasswd}" type="password" id="password" v-model="password">
+        <input v-bind:style="{ borderColor: borderColorPasswd}" v-bind:type="eye" type="password" id="password" v-model="password">
+        <font-awesome-icon class="eyeIcon" id="eye" v-if="eye === 'password'" @click="eye = 'text'" icon="fa-solid fa-eye" />
+        <font-awesome-icon class="eyeIcon" id="eyeSlash" v-else @click="eye = 'password'" icon="fa-solid fa-eye-slash" />
         <br><br>
         <div class="center">
           <input id="button" type="submit" value="Valider">
@@ -35,12 +37,13 @@ export default {
       error: "",
       borderColorEmail: "",
       borderColorPasswd: "",
+      eye: 'password',
     }
   },
   methods: {
     register() {
       if (this.email !== "" && this.password !== "" && this.name !== "") {
-        axios.post(this.$domain+"users", {
+        axios.post(this.$domain + "users", {
               email: this.email,
               password: this.password,
               name: this.name
@@ -55,15 +58,15 @@ export default {
               if (response.status !== 201) {
                 this.error = "Erreur de l'api..";
               } else {
-                axios.post(this.$domain+"login_check", {
-                  email: this.email,
-                  password: this.password,
-                },
-          {
-                  headers: {
-                    'Content-Type': 'application/json'
-                  }
-                }
+                axios.post(this.$domain + "login_check", {
+                      email: this.email,
+                      password: this.password,
+                    },
+                    {
+                      headers: {
+                        'Content-Type': 'application/json'
+                      }
+                    }
                 ).then(
                     (response) => {
                       let token = response.data["token"];
@@ -77,8 +80,7 @@ export default {
                 this.$router.push('/')
               }
             }
-        ).catch(error=>{
-          console.log(error)
+        ).catch(error => {
           this.error = error.message
         })
       } else {
@@ -94,7 +96,7 @@ export default {
           this.borderColorPasswd = "";
         }
       }
-    }
+    },
   }
 }
 </script>

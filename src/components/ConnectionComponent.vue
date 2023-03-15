@@ -3,12 +3,14 @@
     <fieldset>
       <legend>Formulaire de connexion</legend>
       <br>
-      <form @submit.prevent="register">
+      <form @submit.prevent="login">
         <label for="email">Email<em>*</em></label>
         <input v-bind:style="{ borderColor: borderColorEmail}" type="text" id="email" v-model="username">
         <br>
         <label for="password">Mot de passe<em>*</em></label>
-        <input v-bind:style="{ borderColor: borderColorPasswd}" type="password" id="password" v-model="password">
+        <input v-bind:style="{ borderColor: borderColorPasswd}" v-bind:type="eye" type="password" id="password" v-model="password">
+        <font-awesome-icon class="eyeIcon" id="eye" v-if="eye === 'password'" @click="eye = 'text'" icon="fa-solid fa-eye" />
+        <font-awesome-icon class="eyeIcon" id="eyeSlash" v-else @click="eye = 'password'" icon="fa-solid fa-eye-slash" />
         <br><br>
         <div class="center">
           <input id="button" type="submit" value="Valider">
@@ -37,10 +39,11 @@ export default {
       error: "",
       borderColorEmail: "",
       borderColorPasswd: "",
+      eye: 'password',
     }
   },
   methods: {
-    register() {
+    login() {
       if (this.username !== "" && this.password !== "") {
         axios.post(this.$domain+"login_check", {
               email: this.username,
@@ -53,19 +56,20 @@ export default {
             },
         ).then(
             (response) => {
-              console.log(response);
               if (response.status !== 200) {
                 this.error = "Erreur de l'api..";
               }
               let token = response.data["token"];
               this.cookies.set("myToken", token);
               let tokenDecode = VueJwtDecode.decode(this.$cookies.get("myToken"));
-              console.log(tokenDecode['id']);
               this.$cookies.set("myId", tokenDecode['id'])
 
-              this.$router.push('/');
             }
-        )
+        ).catch(
+            (error) => {
+              this.error = error.data
+            }
+        );
         this.username = "";
         this.password = "";
       } else {
