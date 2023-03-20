@@ -46,6 +46,6 @@ app.use(VueAxios, axios)
 app.use(VueCookies)
 app.component("font-awesome-icon", FontAwesomeIcon);
 
-app.config.globalProperties.$domain = "http://www.artred02.fr:8888/api/"
+app.config.globalProperties.$domain = "https://api.artred02.fr/api/"
 
 app.mount('#app')
