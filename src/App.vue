@@ -1,6 +1,5 @@
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
-import HeaderComponent2 from "@/components/HeaderComponent2.vue";
 import {useCookies} from "vue3-cookies";
 export default {
   setup() {
@@ -8,8 +7,7 @@ export default {
     return { cookies };
   },
   components: {
-    HeaderComponent,
-    HeaderComponent2
+    HeaderComponent
   }
 }
 </script>
