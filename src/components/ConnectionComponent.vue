@@ -63,7 +63,7 @@ export default {
               this.cookies.set("myToken", token);
               let tokenDecode = VueJwtDecode.decode(this.$cookies.get("myToken"));
               this.$cookies.set("myId", tokenDecode['id'])
-
+              this.$router.push('/')
             }
         ).catch(
             (error) => {

@@ -20,6 +20,7 @@ import {
     faEye,
     faEyeSlash,
     faMoon,
+    faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 const app = createApp(App)
@@ -35,6 +36,7 @@ library.add(
     faEye,
     faEyeSlash,
     faMoon,
+    faBars,
 );
 
 app.use(router)

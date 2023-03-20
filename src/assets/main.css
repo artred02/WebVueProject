@@ -35,14 +35,14 @@ a{
 }
 
 header{
-    padding: 2vh 0 2vh 0;
+    padding: 20px 0 20px 0;
     background-color: var(--color-primary);
     transition: all 0.5s ease-in-out;
 }
 
 div.myForm {
     width: 600px;
-    margin: 20% auto;
+    margin: 300px auto;
     position:absolute;
     left:50%;
     transform: translate(-50%,-50%);
@@ -60,6 +60,7 @@ div.myForm legend {
 
 div.myForm fieldset {
     border-radius:10px;
+    border-color: var(--color-secondary);
 }
 
 div.myForm label {
@@ -77,6 +78,7 @@ div.myForm em {
     font-weight: bold;
     font-style: normal;
     color: var(--color-secondary);
+    transition: all 0.5s ease-in-out;
 }
 
 div.myForm input, textarea {
@@ -158,4 +160,73 @@ div.center {
 
 .eyeIcon {
     color: var(--color-secondary);
+}
+
+@media all and (max-width: 991px){
+    header {
+        padding: 10px 0 10px 0;
+    }
+
+    #spanHeader {
+        display: none;
+    }
+
+    div.myForm {
+        width: 80%;
+        position:absolute;
+        margin-top: 150px;
+        left:50%;
+        transform: translate(-50%,-50%);
+        background-color: var(--color-tertiary);
+        border-radius:10px;
+        padding:30px;
+        transition: all 0.5s ease-in-out;
+    }
+
+    div.myForm label {
+        width: 70px;
+        display: inline-block;
+        vertical-align: top;
+        margin: 6px;
+        font-size:10px;
+        color: var(--color-text);
+        transition: all 0.5s ease-in-out;
+        padding: 4px 0 2px 0;
+    }
+
+    div.myForm em {
+        font-weight: bold;
+        font-style: normal;
+        color: var(--color-secondary);
+    }
+
+    div.myForm input, textarea {
+        width: 200px;
+        margin: 3px;
+        border:0;
+        border-bottom:1px solid var(--color-secondary);
+        background:transparent;
+        padding:4px 0 2px 0;
+        font-size:10px;
+        color: var(--color-text);
+    }
+
+    div.myForm input, textarea:focus{
+        border:none;
+        outline:none;
+        border-bottom:1px solid var(--color-secondary);
+    }
+
+    #button{
+        color: var(--color-text);
+        background-color: var(--color-secondary);
+        outline: none;
+        border: 0;
+        padding: 5px 10px;
+        text-transform: uppercase;
+        border-radius: 2px;
+        position:relative;
+        height: auto;
+        margin: 0;
+    }
 }

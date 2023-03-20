@@ -62,4 +62,21 @@ export default {
   }a{
     margin-top: 15px;
   }
+
+  @media all and (max-width: 991px) {
+    .mainDiv{
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+    }
+    .parent{
+      display: block;
+      margin: 5% 0;
+      height: 50px;
+      width: 100%;
+      max-width: 500px;
+      padding: 2%;
+    }a{
+       margin-top: 15px;
+     }
+  }
 </style>

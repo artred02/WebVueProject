@@ -75,7 +75,4 @@ export default {
 </script>
 
 <style scoped>
-.myForm {
-  margin: 15% auto;
-}
 </style>

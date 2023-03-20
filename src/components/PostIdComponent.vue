@@ -5,7 +5,7 @@
     <div class="postIdVue">
       <div class="childDiv" style="font-size: x-large">{{post.title}}</div>
       <br>
-      <div><span v-if="this.post.user !== undefined && this.post.user !== 0">{{post.user.name}}</span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
+      <div><span v-if="this.post.user !== undefined && this.post.user !== 0"><b>{{post.user.name}}</b></span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
       <br>
       <div class="childDiv" style="margin-left: 2%">{{post.content}}</div>
       <br>
