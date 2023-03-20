@@ -7,6 +7,7 @@
     --color-tertiary: #5A92AF;
     --color-text: #082c3d;
     --fa-primary-color: #2f657c;
+    --fa-display: inline;
 }
 
 [data-theme="dark"] {
@@ -22,6 +23,10 @@ svg {
     color: var(--fa-primary-color);
 }
 
+.svg-inline--fa {
+    vertical-align: middle;
+}
+
 body{
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
@@ -32,6 +37,10 @@ body{
 a{
     text-decoration: none;
     color: var(--color-text);
+}
+
+.postAccess {
+    color: var(--fa-primary-color);
 }
 
 header{

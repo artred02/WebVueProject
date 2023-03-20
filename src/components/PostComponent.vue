@@ -5,7 +5,7 @@
       <div class="childDiv">Titre : {{post.title}}</div>
       <div class="childDiv">Contenu : {{post.content}}</div>
       <div>Date de création : {{formatDate(post.creationDate)}}</div>
-      <router-link :to="{ name: 'postId', params:{id: post.id}}">Accéder au post</router-link>
+      <router-link class="postAccess" :to="{ name: 'postId', params:{id: post.id}}">Accéder au post <font-awesome-icon icon="fa-solid fa-arrow-right" /></router-link>
     </div>
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
     }
     .parent{
       display: block;
-      margin: 5% 0;
+      margin: 8% 0;
       height: 50px;
       width: 100%;
       max-width: 500px;

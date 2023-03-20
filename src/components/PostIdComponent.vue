@@ -3,11 +3,11 @@
 
   <div class="mainDiv">
     <div class="postIdVue">
-      <div class="childDiv" style="font-size: x-large">{{post.title}}</div>
+      <div class="postTitle">{{post.title}}</div>
       <br>
-      <div><span v-if="this.post.user !== undefined && this.post.user !== 0"><b>{{post.user.name}}</b></span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
+      <div class="postUser"><span v-if="this.post.user !== undefined && this.post.user !== 0"><b>{{post.user.name}}</b></span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
       <br>
-      <div class="childDiv" style="margin-left: 2%">{{post.content}}</div>
+      <div class="postContent">{{post.content}}</div>
       <br>
       <button @click="showModal" id="myBtn" v-if="this.$cookies.isKey('myToken')">Commenter</button>
 
@@ -30,7 +30,7 @@
       <div v-for="comment in this.comments" v-if="this.comments !== undefined && this.comments.length !== 0" class="divComments">
         <div>
           <span><b>{{comment.user.name}}</b></span>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
-          <span style="margin-left: 2%">{{comment.content}}</span>
+          <span class="postContent">{{comment.content}}</span>
         </div>
         <br>
       </div>
@@ -158,15 +158,31 @@ export default {
 <style scoped>
 
 .mainDiv{
-  display: grid;
-  grid-template-columns: 25%;
+  display: flex;
+  margin-left: 25%;
 }
 
 .postIdVue{
   display: block;
   width: auto;
 }
+
+.postTitle {
+  font-size: x-large
+}
+
 .divComments{
    padding-left: 5vw;
  }
+
+.postContent {
+  margin-left: 30px
+}
+
+@media all and (max-width: 991px) {
+  .mainDiv{
+    display: flex;
+    margin-left: 15%;
+  }
+}
 </style>
