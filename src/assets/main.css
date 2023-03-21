@@ -107,6 +107,17 @@ div.myForm input, textarea:focus{
     border-bottom:1px solid var(--color-secondary);
 }
 
+.buttons {
+    color: var(--color-text);
+    background-color: var(--color-secondary);
+    border: 0;
+    padding:10px 20px;
+    text-transform:uppercase;
+    border-radius:5px;
+    cursor:pointer;
+    position:relative;
+}
+
 #button{
     color: var(--color-text);
     background-color: var(--color-secondary);
@@ -119,6 +130,8 @@ div.myForm input, textarea:focus{
     cursor:pointer;
     position:relative;
 }
+
+
 
 div.center {
     margin: 0 auto;

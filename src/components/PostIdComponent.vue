@@ -9,7 +9,7 @@
       <br>
       <div class="postContent">{{post.content}}</div>
       <br>
-      <button @click="showModal" id="myBtn" v-if="this.$cookies.isKey('myToken')">Commenter</button>
+      <input type="button" @click="showModal" class="buttons" id="myBtn" value="Commenter" v-if="this.$cookies.isKey('myToken')">
 
       <div id="myModal" class="modal">
 
@@ -18,15 +18,12 @@
           <span class="close">&times;</span>
           <form @submit="commentApi($event)">
             <label for="comment">Commentaire : </label><br>
-            <textarea name="" id="comment" v-model="content"></textarea><br>
-            <input type="submit" value="Commenter">
+            <textarea id="comment" v-model="content" rows="1"></textarea><br>
+            <input type="submit" value="Commenter" class="buttons">
           </form>
         </div>
-
       </div>
-      <br>
-
-      <br>
+      <br><br>
       <div v-for="comment in this.comments" v-if="this.comments !== undefined && this.comments.length !== 0" class="divComments">
         <div>
           <span><b>{{comment.user.name}}</b></span>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
@@ -176,7 +173,24 @@ export default {
  }
 
 .postContent {
-  margin-left: 30px
+  margin-left: 30px;
+}
+
+.modal-content {
+  background-color: var(--color-primary);
+  width: 50%;
+}
+
+.modal-content #comment {
+  width: 100%
+}
+
+.modal-content label {
+  color: var(--color-text);
+}
+
+.modal-content textarea {
+  color: var(--color-text);
 }
 
 @media all and (max-width: 991px) {
