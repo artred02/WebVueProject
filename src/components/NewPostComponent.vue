@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import VueJwtDecode from "vue-jwt-decode";
 
 export default {
   name: "NewPostComponent",
@@ -44,11 +45,12 @@ export default {
       if (this.title !== "" && this.content !== "")
       {
         this.posts = [];
+        const id = VueJwtDecode.decode(this.$cookies.get('myToken'))['id']
         axios.post(this.$domain+"posts", {
           title: this.title,
           content: this.content,
           creationDate: new Date(),
-          user: '/api/users/'+this.$cookies.get('myId')
+          user: '/api/users/'+id
         },
   {
           headers: {
@@ -60,7 +62,6 @@ export default {
             (error) => {
               if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
                 this.$cookies.remove("myToken");
-                this.$cookies.remove("myId");
                 this.$router.push('/');
               } else {
                 this.error = error;

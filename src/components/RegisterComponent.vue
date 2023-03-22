@@ -71,8 +71,6 @@ export default {
                     (response) => {
                       let token = response.data["token"];
                       this.$cookies.set("myToken", token);
-                      let tokenDecode = VueJwtDecode.decode(token);
-                      this.$cookies.set('myId', tokenDecode['id'])
                     }
                 )
                 this.email = "";

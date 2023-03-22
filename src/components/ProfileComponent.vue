@@ -1,6 +1,5 @@
 <template>
-<div class="mainDivProfile" v-if="user !== undefined">
-  <div class="myForm">
+  <div class="myForm" v-if="user !== undefined">
     <fieldset>
       <legend>Modification du profil</legend>
       <form @submit.prevent="setUser">
@@ -17,7 +16,6 @@
       </form>
     </fieldset>
   </div>
-</div>
 </template>
 
 <script>
@@ -75,4 +73,16 @@ export default {
 </script>
 
 <style scoped>
+.myForm {
+  display: flex;
+  position: unset;
+  margin: 300px 0 0 50%;
+  justify-content: center;
+}
+
+@media all and (max-width: 991px) {
+  .myForm {
+    margin: 150px 0 0 50%;
+  }
+}
 </style>

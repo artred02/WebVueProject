@@ -60,9 +60,7 @@ export default {
                 this.error = "Erreur de l'api..";
               }
               let token = response.data["token"];
-              this.cookies.set("myToken", token);
-              let tokenDecode = VueJwtDecode.decode(this.$cookies.get("myToken"));
-              this.$cookies.set("myId", tokenDecode['id'])
+              this.cookies.set("myToken", token, 1200);
               this.$router.push('/')
             }
         ).catch(

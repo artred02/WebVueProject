@@ -40,6 +40,7 @@
 import { useRoute } from 'vue-router';
 import axios from "axios";
 import dayjs from "dayjs";
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   setup() {
     const route = useRoute();
@@ -61,13 +62,6 @@ export default {
   methods: {
     formatDate(dateString) {
       return dayjs(dateString).format('DD/MM/YYYY, HH:mm');
-    },
-    changeDisplay() {
-      if (this.isDisplayForm === 'none') {
-        this.isDisplayForm = '';
-      } else {
-        this.isDisplayForm = 'none'
-      }
     },
     callApi() {
       this.post = [];
@@ -101,10 +95,11 @@ export default {
     },
     commentApi(event) {
       event.preventDefault();
+      const id = VueJwtDecode.decode(this.$cookies.get('myToken'))['id']
       axios.post(this.$domain+"comments", {
             content: this.content,
             creationDate: new Date(),
-            user: '/api/users/'+this.$cookies.get('myId'),
+            user: '/api/users/'+id,
             post: '/api/posts/'+this.route.params.id
           },
           {
@@ -126,7 +121,6 @@ export default {
           (error) => {
             if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
               this.$cookies.remove("myToken");
-              this.$cookies.remove("myId");
               this.$router.push('/');
             } else {
               this.error = error;
@@ -155,7 +149,6 @@ export default {
 <style scoped>
 
 .mainDiv{
-  display: flex;
   margin-left: 25%;
 }
 
