@@ -26,7 +26,7 @@
       <br><br>
       <div v-for="comment in this.comments" v-if="this.comments !== undefined && this.comments.length !== 0" class="divComments">
         <div>
-          <span><b>{{comment.user.name}}</b></span>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
+          <b><router-link v-if="this.$cookies.isKey('myToken')" :to="{ name: 'otherProfile', params:{id: comment.user.id}}">{{comment.user.name}}</router-link> <span v-else>{{comment.user.name}}</span></b>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
           <span class="postContent">{{comment.content}}</span>
         </div>
         <br>

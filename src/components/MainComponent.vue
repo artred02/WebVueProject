@@ -1,7 +1,7 @@
 <template>
   <br>
   <div class="text" style="margin-top: 10px;">
-    Bienvenue sur le forum basé sur l'api développée par Clément Lardemelle : <a style="color: var(--fa-primary-color)" href="https://github.com/artred02/ApiProjectV2" target="_blank" rel="noreferrer noopener">ApiProject</a>
+    Bienvenue sur le forum basé sur cette <a style="color: var(--fa-primary-color)" href="https://github.com/artred02/ApiProjectV2" target="_blank" rel="noreferrer noopener">Api</a>.
     <br><br>
     L'api est utilisable par tout le monde, le site n'est donc pas responsable du contenu placé par l'utilisateur, merci de votre compréhention.
     <br><br>

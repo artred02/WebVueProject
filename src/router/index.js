@@ -7,6 +7,7 @@ import ConnectionComponent from "@/components/ConnectionComponent.vue";
 import PostIdComponent from "@/components/PostIdComponent.vue";
 import MyProfileVue from "@/views/MyProfileVue.vue";
 import SeeProfileComponent from "@/components/SeeProfileComponent.vue";
+import CGU from "@/components/CGU.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/see/profile/:id',
       name: 'otherProfile',
       component: SeeProfileComponent
+    },
+    {
+      path: '/CGU',
+      name: 'cgu',
+      component: CGU
     }
   ]
 })
