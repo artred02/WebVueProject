@@ -5,7 +5,7 @@
     <br><br>
     L'api est utilisable par tout le monde, le site n'est donc pas responsable du contenu placé par l'utilisateur, merci de votre compréhention.
     <br><br>
-    Poster nécessiter d'avoir un compte sur l'application mais il n'est pas nécessaire de s'inscrire pour lire un post.
+    Poster nécessite d'avoir un compte sur l'application mais il n'est pas nécessaire de s'inscrire pour lire un post.
   </div>
 </template>
 

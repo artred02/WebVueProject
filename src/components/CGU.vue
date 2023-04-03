@@ -23,7 +23,7 @@
   <p>L'administrateur du Forum ne peut être tenu responsable de tout préjudice résultant de l'utilisation du Forum, y compris les pertes de profits, les pertes de données ou les dommages indirects.</p>
   <h2>5. Modification et résiliation du service</h2>
   <p>L'administrateur du Forum se réserve le droit de modifier ou de suspendre le Forum, à tout moment et sans préavis.</p>
-  <p>L'administrateur du Forum se réserve également le droit de résilier votre compte et d'interdire votre accès au Forum, sans préavis, si vous enfreignez les présentes CGU ou les lois applicables</p>
+  <p>L'administrateur du Forum se réserve également le droit de résilier votre compte et d'interdire votre accès au Forum, sans préavis, si vous enfreignez les présentes CGU ou les lois applicables.</p>
   </div>
 </template>
 
