@@ -5,7 +5,7 @@
     <div class="postIdVue">
       <div class="postTitle">{{post.title}}</div>
       <br>
-      <div class="postUser"><span v-if="this.post.user !== undefined && this.post.user !== 0"><b>{{post.user.name}}</b></span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
+      <div class="postUser"><span v-if="this.post.user !== undefined && this.post.user !== 0"><b><router-link v-if="this.$cookies.isKey('myToken')" :to="{ name: 'otherProfile', params:{id: post.id}}">{{post.user.name}}</router-link> <span v-else>{{post.user.name}}</span> </b></span> <span class="date">{{formatDate(post.creationDate)}}</span></div>
       <br>
       <div class="postContent">{{post.content}}</div>
       <br>

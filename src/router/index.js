@@ -6,6 +6,7 @@ import RegisterComponent from "@/components/RegisterComponent.vue";
 import ConnectionComponent from "@/components/ConnectionComponent.vue";
 import PostIdComponent from "@/components/PostIdComponent.vue";
 import MyProfileVue from "@/views/MyProfileVue.vue";
+import SeeProfileComponent from "@/components/SeeProfileComponent.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,8 +43,13 @@ const router = createRouter({
     },
     {
       path: '/profile',
-      name: 'myPosts',
+      name: 'myProfile',
       component: MyProfileVue
+    },
+    {
+      path: '/see/profile/:id',
+      name: 'otherProfile',
+      component: SeeProfileComponent
     }
   ]
 })
