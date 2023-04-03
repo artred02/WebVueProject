@@ -74,7 +74,7 @@ export default {
 }
 .parent{
   display: block;
-  margin: 5% 0 0 25%;
+  margin: 5% 0 25% 25%;
   height: 50px;
   width: 100%;
   max-width: 500px;

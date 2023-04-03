@@ -1,14 +1,10 @@
 <template>
   <br>
-  <div class="text" style="margin-top: 10px">
-    Bienvenu sur le forum basé sur l'api développée par Clément Lardemelle : <a href="https://github.com/artred02/ApiProjectV2" target="_blank" rel="noreferrer noopener">ApiProject</a>
-  </div>
-  <br>
-  <div class="text">
+  <div class="text" style="margin-top: 10px;">
+    Bienvenue sur le forum basé sur l'api développée par Clément Lardemelle : <a style="color: var(--fa-primary-color)" href="https://github.com/artred02/ApiProjectV2" target="_blank" rel="noreferrer noopener">ApiProject</a>
+    <br><br>
     L'api est utilisable par tout le monde, le site n'est donc pas responsable du contenu placé par l'utilisateur, merci de votre compréhention.
-  </div>
-  <br>
-  <div class="text">
+    <br><br>
     Poster nécessiter d'avoir un compte sur l'application mais il n'est pas nécessaire de s'inscrire pour lire un post.
   </div>
 </template>
