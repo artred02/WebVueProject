@@ -1,5 +1,6 @@
 <template>
   <div class="mainDiv">
+<!-- on affiche les posts de l'utilisateur -->
     <div class="parent" v-for="post in posts">
       <div class="childDiv">Titre : {{post.title}}</div>
       <div class="childDiv">Contenu : {{post.content}}</div>
@@ -26,23 +27,29 @@ export default {
     this.myPosts();
   },
   methods: {
+    // cette fonction permet de formater la date
     formatDate(dateString) {
       const date = dayjs(dateString);
       return date.format('dddd D MMMM YYYY');
     },
+    // cette fonction permet de récupérer les posts de l'utilisateur
     myPosts() {
       this.posts = [];
+      // on récupère l'id de l'utilisateur
       const id = VueJwtDecode.decode(this.$cookies.get('myToken'))['id']
+      // on récupère les posts de l'utilisateur
       axios.get(this.$domain+"posts/user/"+id, {
         headers: {
           'Accept' : 'application/json',
         }
       }).then(
+          // on ajoute les posts dans le tableau posts
           (response) => {
             response.data.forEach(post => this.posts.push(post));
           }
       );
     },
+    // cette fonction permet de supprimer un post
     deletePost(id) {
       axios.delete(this.$domain+"posts/"+id, {
         headers: {
@@ -52,6 +59,7 @@ export default {
       }).then(
           this.myPosts
       ).catch(
+          // si le token est expiré ou invalide, on le supprime et on redirige vers la page d'accueil
           (error) => {
             if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
               this.$cookies.remove("myToken");

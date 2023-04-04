@@ -43,6 +43,7 @@ export default {
     }
   },
   methods: {
+    // fonction qui permet de se connecter
     login() {
       if (this.username !== "" && this.password !== "") {
         axios.post(this.$domain+"login_check", {
@@ -55,6 +56,7 @@ export default {
               }
             },
         ).then(
+            // si la connexion est réussie, on stocke le token dans les cookies
             (response) => {
               if (response.status !== 200) {
                 this.error = "Erreur de l'api..";
@@ -64,13 +66,16 @@ export default {
               this.$router.push('/')
             }
         ).catch(
+            // si la connexion échoue, on affiche l'erreur
             (error) => {
               this.error = error.data
             }
         );
+        // on vide les champs
         this.username = "";
         this.password = "";
       } else {
+        // si les champs ne sont pas remplis, on affiche une erreur
         this.error = "Les champs ne sont pas valides";
         if (this.username === "") {
           this.borderColorEmail = "red";

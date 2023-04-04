@@ -21,10 +21,12 @@ import router from "@/router";
 export default {
   name: "HeaderComponent",
   methods: {
+    // Toggle between light and dark theme
     toggleTheme() {
       this.theme = this.theme === "dark" ? "light" : "dark";
       document.documentElement.setAttribute("data-theme", this.theme);
     },
+    // Disconnect the user
     disconnect() {
       this.$cookies.remove('myToken');
       this.$cookies.remove('myId');

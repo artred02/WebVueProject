@@ -29,6 +29,7 @@ export default {
       posts: []
     }
   },
+  // on utilise la fonction useRoute pour récupérer l'id de l'utilisateur souhaité
   setup() {
     const route = useRoute();
     return { route };
@@ -37,10 +38,12 @@ export default {
     this.getProfile()
   },
   methods: {
+    // cette fonction permet de formater la date
     formatDate(dateString) {
       const date = dayjs(dateString);
       return date.format('dddd D MMMM YYYY');
     },
+    // cette fonction permet de récupérer les informations de l'utilisateur
     getProfile(){
       axios.get(this.$domain + "users/" + this.route.params.id, {
         headers: {
@@ -48,11 +51,13 @@ export default {
           'Authorization' : 'Bearer ' + this.$cookies.get("myToken")
         }
       }).then(
+          // on ajoute les informations de l'utilisateur dans le tableau profile
           (response) => {
             this.profile = response.data;
             this.getPosts();
           }
       ).catch(
+          // si le token est expiré ou invalide, on le supprime et on redirige vers la page de connexion
           (error) => {
             if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
               this.$cookies.remove("myToken");
@@ -63,6 +68,7 @@ export default {
           }
       );
     },
+    // cette fonction permet de récupérer les posts de l'utilisateur
     getPosts(){
       axios.get(this.$domain + "posts/user/" + this.route.params.id, {
         headers: {
@@ -70,10 +76,12 @@ export default {
           'Authorization' : 'Bearer ' + this.$cookies.get("myToken")
         }
       }).then(
+          // on ajoute les posts dans le tableau posts
           (response) => {
             response.data.forEach(post => this.posts.push(post));
           }
       ).catch(
+          // si le token est expiré ou invalide, on le supprime et on redirige vers la page de connexion
           (error) => {
             if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
               this.$cookies.remove("myToken");

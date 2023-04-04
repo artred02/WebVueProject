@@ -41,11 +41,13 @@ export default {
     }
   },
   methods: {
+    // fonction qui permet de créer un post
     callApi() {
       if (this.title !== "" && this.content !== "")
       {
         this.posts = [];
         const id = VueJwtDecode.decode(this.$cookies.get('myToken'))['id']
+        // on appelle l'api pour créer un post
         axios.post(this.$domain+"posts", {
           title: this.title,
           content: this.content,
@@ -60,6 +62,7 @@ export default {
         }
         ).catch(
             (error) => {
+              // si le token est expiré ou invalide, on le supprime des cookies et on redirige vers la page de connexion
               if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
                 this.$cookies.remove("myToken");
                 this.$router.push('/');
@@ -71,6 +74,7 @@ export default {
         this.title = "";
         this.content = "";
       } else {
+        // si les champs ne sont pas valides, on affiche un message d'erreur
         this.error="Les champs ne sont pas valides";
         if (this.title === ""){
           this.borderColorTitle="red";

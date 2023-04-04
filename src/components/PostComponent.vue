@@ -25,6 +25,7 @@ export default {
   },
   name: "PostComponent",
   methods: {
+    // cette fonction permet de récupérer les posts
     callApi() {
       this.posts = [];
       axios.get(this.$domain+"posts",
@@ -34,11 +35,13 @@ export default {
         }
       }
       ).then(
+          // on ajoute les posts dans le tableau posts
           (response) => {
             response.data.forEach(post => this.posts.push(post));
           }
       );
     },
+    // cette fonction permet de formater la date
     formatDate(dateString) {
       const date = dayjs(dateString);
       return date.format('dddd D MMMM YYYY');

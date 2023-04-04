@@ -41,6 +41,7 @@ export default {
     }
   },
   methods: {
+    // fonction qui permet de créer un compte
     register() {
       if (this.email !== "" && this.password !== "" && this.name !== "") {
         axios.post(this.$domain + "users", {
@@ -54,6 +55,7 @@ export default {
               }
             },
         ).then(
+            // si la création de compte est réussie, on se connecte
             (response) => {
               if (response.status !== 201) {
                 this.error = "Erreur de l'api..";
@@ -78,6 +80,7 @@ export default {
                 this.$router.push('/')
               }
             }
+        // si la création de compte échoue, on affiche l'erreur
         ).catch(error => {
           this.error = error.message
         })

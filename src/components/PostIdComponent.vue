@@ -24,6 +24,7 @@
         </div>
       </div>
       <br><br>
+<!--      Affichage des commentaires-->
       <div v-for="comment in this.comments" v-if="this.comments !== undefined && this.comments.length !== 0" class="divComments">
         <div>
           <b><router-link v-if="this.$cookies.isKey('myToken')" :to="{ name: 'otherProfile', params:{id: comment.user.id}}">{{comment.user.name}}</router-link> <span v-else>{{comment.user.name}}</span></b>, <span class="date">{{formatDate(comment.creationDate)}}</span><br>
@@ -42,6 +43,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import VueJwtDecode from "vue-jwt-decode";
 export default {
+  // on récupère l'id du post dans l'url
   setup() {
     const route = useRoute();
     return { route };
@@ -60,9 +62,11 @@ export default {
     this.callApi();
   },
   methods: {
+    // fonction qui permet de formater la date
     formatDate(dateString) {
       return dayjs(dateString).format('DD/MM/YYYY, HH:mm');
     },
+    // fonction qui permet de récupérer le post
     callApi() {
       this.post = [];
       axios.get(this.$domain+"posts/"+this.route.params.id,
@@ -72,6 +76,7 @@ export default {
             }
           }
       ).then(
+          // si la requête est un succès, on récupère le post
           (response) => {
             this.post = response.data;
             if (this.$cookies.isKey('myToken')) {
@@ -80,6 +85,7 @@ export default {
           }
       );
     },
+    // fonction qui permet de récupérer les commentaires
     getComments() {
       this.comments = [];
       axios.get(this.$domain+"comments/post/"+this.post.id, {
@@ -88,11 +94,13 @@ export default {
           'Authorization' : 'Bearer ' + this.$cookies.get("myToken")
         }
       }).then(
+          // si la requête est un succès, on récupère les commentaires
           (response) => {
             this.comments = response.data;
           }
       );
     },
+    // fonction qui permet d'ajouter un commentaire
     commentApi(event) {
       event.preventDefault();
       const id = VueJwtDecode.decode(this.$cookies.get('myToken'))['id']
@@ -109,6 +117,7 @@ export default {
             }
           }
       ).then(
+          // si la requête est un succès, on ajoute le commentaire
           (response)=>{
             if (response.status !== 201){
               this.error="Erreur de l'api..";
@@ -118,6 +127,7 @@ export default {
             this.getComments();
           }
       ).catch(
+          // si la requête est un échec, on affiche l'erreur
           (error) => {
             if(error.response.data.message === "Expired JWT Token" || error.response.data.message === "Invalid JWT Token"){
               this.$cookies.remove("myToken");
@@ -128,6 +138,7 @@ export default {
           }
       );
     },
+    // fonction qui permet d'afficher le formulaire de commentaire
     showModal() {
       const modal = document.getElementById("myModal");
       const span = document.getElementsByClassName("close")[0];
