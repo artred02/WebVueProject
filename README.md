@@ -40,6 +40,9 @@ Cette API est un forum et contient un certains nombre d'appels différents que j
     - [x] Créer un système de création de post
     - [x] Créer un système de création de commentaire
     - [x] Créer un système de suppression de post
+- [x] Mise en production sur un serveur personnel
+- [x] Ajout d'un nom de domaine
+- [x] Ajout d'un certificat SSL
 
 
 #### Ce que j'ai pas réussi à faire
