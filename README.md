@@ -1,9 +1,9 @@
 ### Mise en place de l'environnement de développement
 
 #### Prérequis
-- [NodeJs] (https://nodejs.org/en/)
-- [Npm] (https://www.npmjs.com/)
-- [VueJs3/Vite] (https://vitejs.dev/)
+- [NodeJs](https://nodejs.org/en/)
+- [Npm](https://www.npmjs.com/)
+- [VueJs3/Vite](https://vitejs.dev/)
 
 #### Installation
 Tout d'abord, il faut installer les dépendances du projet. Pour cela, il faut lancer la commande suivante :
@@ -14,7 +14,7 @@ Puis, il faut démarrer le serveur de développement :
 ```bash
 $ npm run dev
 ```
-Enfin, il faut se rendre sur l'adresse suivante : [http://localhost:5173] (http://localhost:5173)
+Enfin, il faut se rendre sur l'adresse suivante : [http://localhost:5173](http://localhost:5173)
 
 #### Pourquoi ce projet ?
 Premièrement, j'avais envie de réaliser une API en symfony avec API Platform. Après quelques heures de développement, j'avais une API fonctionnelle.
