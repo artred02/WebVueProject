@@ -1,5 +1,10 @@
 ### Mise en place de l'environnement de développement
 
+#### Prérequis
+- [NodeJs] (https://nodejs.org/en/)
+- [Npm] (https://www.npmjs.com/)
+- [VueJs3/Vite] (https://vitejs.dev/)
+
 #### Installation
 Tout d'abord, il faut installer les dépendances du projet. Pour cela, il faut lancer la commande suivante :
 ```bash
