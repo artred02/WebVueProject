@@ -59,3 +59,9 @@ Cette API est un forum et contient un certains nombre d'appels différents que j
 - [x] VueJs3/Vite
 - [x] Axios
 - [x] Formater une date en javascript avec dayjs
+
+#### Mon avis sur le cours
+- Un cours enrichissant qui permet de découvrir le fonctionnement du framework dans sa globalité
+- Apprentissage de l'utilisation d'une Api
+- Le cours est ouvert à d'autres sujets / technologies (Api Platform etc..)
+- Le petit bémol est peut être le manque d'explications sur ce qui entoure le framework (npm, vite ou encore les écosystèmes)
